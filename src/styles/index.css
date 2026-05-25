@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-body: #F99359;
+    
+    --color-primary: #2F111D;
+    --color-secondary: #F8EADF;
+    --color-tertiary: #CDC6E7;
+
+    --font-sans: "Poppins", sans-serif;
+}
+
+html {
+    font-family: var(--font-sans);
+}
+
+body {
+    background-color: var(--color-secondary);
+}
+
+header {
+    background-image: 
+        linear-gradient(rgba(47, 17, 29, 0.8)),
+        url("/img/header-image.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+input[type="checkbox"]:checked {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+}
