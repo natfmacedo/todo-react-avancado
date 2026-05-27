@@ -24,6 +24,7 @@ function TodoFilters() {
                         }`
                     }
                     onClick={() => setFiltro(f.valor)}
+                    aria-pressed={filtro === f.valor}
                 >
                     {f.label}
                 </button>

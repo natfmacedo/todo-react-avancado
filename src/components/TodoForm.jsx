@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useTodos } from "../hooks/useTodos";
 import { useInput } from "../hooks/useInput";
 
@@ -6,12 +7,14 @@ function TodoForm() {
     const { adicionar } = useTodos();
 
     const input = useInput();
+    const inputRef = useRef(null);
 
     // O handleSubmit não faz mais o fetch direto, agora quem faz é o contexto através do adicionar()
     const handleSubmit = (e) => {
         e.preventDefault();
         adicionar(input.valor) // o texto digitado no input é enviado para o contexto
         input.limpar(); 
+        inputRef.current.focus();
     };
 
     return (
@@ -20,6 +23,7 @@ function TodoForm() {
             <div className="flex gap-2">
                 <input 
                 id="novatarefa"
+                ref={inputRef}
                 type="text" 
                 placeholder="Ex: fazer caminhada" 
                 value={input.valor}

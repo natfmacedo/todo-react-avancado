@@ -3,14 +3,17 @@ import TodoItem from "./TodoItem";
 
 function TodoList() {
   // As tarefas já frem filtradas do contexto
-  const { tarefasFiltradas, loading, erro } = useTodos();
+  const { tarefasFiltradas, loading, erro, mensagem } = useTodos();
   
   return (
-    <main>
-    <ul className="overflow-y-auto max-h-64 lg:max-h-48">
-      {loading && (
-        <li>Carregando...</li>
-      )}
+    <>
+    <div aria-live="polite" aria-atomic="true" className="sr-only">
+      {mensagem}
+    </div>
+    {loading && (
+      <p>Carregando...</p>
+    )}
+    <ul aria-label="Lista de tarefas" className="overflow-y-auto max-h-64 lg:max-h-48">
       {loading && (
         Array.from({ length: 3 }).map((_, index) => (
           <li key={index} className="flex items-center gap-2 p-2 border-b border-gray-300 last:border-b-0" aria-hidden="true">
@@ -21,14 +24,14 @@ function TodoList() {
         ))
       )}
       {erro && (
-        <li className="status erro">{erro}</li>
+        <li role="alert" className="status erro">{erro}</li>
       )}
       {!loading && !erro && tarefasFiltradas.length === 0 && (
-        <li className="status">Nenhuma tarefa encontrada.</li>
+        <li role="status" className="status">Nenhuma tarefa encontrada.</li>
       )}
       {tarefasFiltradas.map(tarefa => <TodoItem key={tarefa._id} tarefa={tarefa} />)}
     </ul>
-    </main>
+    </>
   )
 }
 

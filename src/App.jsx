@@ -15,7 +15,7 @@ function App() {
         <header className="flex flex-col items-center justify-center h-48">
         <h1 className="text-4xl font-extrabold text-secondary underline decoration-body decoration-wavy">Lista de tarefas</h1>
         </header>
-        <main className="flex flex-col gap-3 items-left p-4 mx-2 -translate-y-8 rounded-lg shadow-lg bg-white sm:w-xl sm:mx-auto sm:p-8">
+        <main aria-label="Gerenciador de tarefas" className="flex flex-col gap-3 items-left p-4 mx-2 -translate-y-8 rounded-lg shadow-lg bg-white sm:w-xl sm:mx-auto sm:p-8">
           <TodoForm />
           <TodoFilters />
           <TodoList />

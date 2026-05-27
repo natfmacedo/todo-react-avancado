@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { TodoContext } from "./TodoContext";
 
-const API_URL = "https://crudcrud.com/api/89a6e6049850494389c26a8897da9ddb/tarefas";
+const API_URL = "https://crudcrud.com/api/ca264f4320ef4f7fa5b6f1db169c14cd/tarefas";
 
 export function TodoProvider({ children }) {
     const [tarefas, setTarefas] = useState([]);
@@ -11,6 +11,12 @@ export function TodoProvider({ children }) {
     });
     const [loading, setLoading] = useState(true);
     const [erro, setErro] = useState(null);    
+    const [mensagem, setMensagem] = useState('');
+
+    const setMensagemTemporaria = (texto) => {
+        setMensagem(texto);
+        setTimeout(() => setMensagem(''), 1000); // Mensagem removida após a primeira exibição
+    }
 
     // GET na API
       useEffect(() => {
@@ -31,7 +37,10 @@ export function TodoProvider({ children }) {
             body: JSON.stringify(nova)
         })
             .then(res => res.json())
-            .then(tarefaCriada => setTarefas(prev => [...prev, tarefaCriada]))
+            .then(tarefaCriada => {
+                setTarefas(prev => [...prev, tarefaCriada]);
+                setMensagemTemporaria(`Tarefa "${texto}" foi adicionada.`);
+               })
             .catch(() => setErro("Erro ao adicionar tarefa."));
     }, []);
 
@@ -48,23 +57,36 @@ export function TodoProvider({ children }) {
     })
             // Atualização da tela apenas se a API respondeu sem erro
             // A lista é percorrida e apenas a tarefa que mudou é substituída
-            .then(() => setTarefas(prev => prev.map(t => t._id === _id ? atualizada : t)))
+            .then(() => { 
+                setTarefas(prev => prev.map(t => t._id === _id ? atualizada : t));
+                setMensagemTemporaria(
+                    atualizada.concluida
+                        ? `Tarefa "${tarefa.texto}" concluída.`
+                        : `Tarefa "${tarefa.texto}" reaberta.`
+                );
+            })
             .catch(() => setErro("Erro ao atualizar tarefa."));
     }, []);
 
     const remover = useCallback((id) => {
+        const tarefa = tarefas.find(t => t._id === id);
         // Passagem apenas do id na URL, sem corpo no body
         return fetch(`${API_URL}/${id}`, { method: 'DELETE' })
             // Atualização da tela apenas se a API respondeu sem erro
             // A lista é filtrada e apenas a tarefa com id correspondente é deletada
-            .then(() => setTarefas(prev => prev.filter(t => t._id !== id)))
+            .then(() => { 
+                setTarefas(prev => prev.filter(t => t._id !== id));
+                setMensagemTemporaria(`Tarefa "${tarefa.texto}" removida.`);
+                })
             .catch(() => setErro("Erro ao remover tarefa."));
-    }, []);
+    }, [tarefas]);
 
     // Filtragem das tarefas
     // Com useMemo o filtro só recalcula quando "tarefas" ou "filtro" mudarem
     const tarefasFiltradas = useMemo(() => {
-        return tarefas.filter(t => {
+        return [...tarefas] // Criação de uma cópia do array para reverter a ordem das tarefas adicionadas sem modificar o array original
+        .reverse()
+        .filter(t => {
             if (filtro === "pendentes") return !t.concluida;
             if (filtro === "concluidas") return t.concluida; // só executa se a linha anterior for falsa, o que elimina a necessidade do "else if"
             return true; // filtro === "todas"
@@ -79,7 +101,7 @@ export function TodoProvider({ children }) {
     return (
         // TodoContext é responsável por distribuir os dados para a árvore
         // Tudo no "value" fica acessível para os elementos filhos via useTodos()
-        <TodoContext.Provider value={{ tarefasFiltradas, filtro, setFiltro, loading, erro, adicionar, alternar, remover }}>
+        <TodoContext.Provider value={{ tarefasFiltradas, filtro, setFiltro, loading, erro, mensagem, adicionar, alternar, remover }}>
             {children}
         </TodoContext.Provider>
     );
