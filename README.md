@@ -2,6 +2,8 @@
 ## Tarefa do curso de Front-end da Escola Bitrânica de Artes Criativas e Tecnologia (EBAC)
 ## Módulo 18 — React avançado: hooks, performance e compartilhamento de dados 👩‍💻
 ![Lista de tarefas](https://i.postimg.cc/zBbLXFL9/print-lista-de-tarefas.jpg)
+
+
 Este projeto consiste em uma aplicação de uma lista de tarefas desenvolvida com recursos avançados do React.
 
 ## Índice
