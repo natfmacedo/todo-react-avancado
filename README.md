@@ -10,9 +10,9 @@ Este projeto consiste em uma aplicação de uma lista de tarefas desenvolvida co
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
 - [Arquitetura](#arquitetura)
-- [Boas práticas](#boas-praticas)
+- [Boas práticas](#boas-práticas)
 - [Layout](#layout)
-- [Instruções para rodar](#instrucoes-para-rodar)
+- [Instruções para rodar](#instruções-para-rodar)
 
 # Funcionalidades 
 - [x] Adicionar tarefas
