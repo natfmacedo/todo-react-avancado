@@ -10,9 +10,9 @@ Este projeto consiste em uma aplicação de uma lista de tarefas desenvolvida co
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
 - [Arquitetura](#arquitetura)
-- [Boas práticas](#boas-praticas)
+- [Boas práticas](#boas-práticas)
 - [Layout](#layout)
-- [Instruções para rodar](#instrucoes-para-rodar)
+- [Instruções para rodar](#instruções-para-rodar)
 
 # Funcionalidades 
 - [x] Adicionar tarefas
@@ -50,7 +50,7 @@ src/
 
 # Layout
 ![Captura de tela mostrando a lista de tarefas](https://i.postimg.cc/c1byW2PH/print-lista-de-tarefas-layout.jpg)
-![Gif mostrando o funcionamento da lista de tarefas](https://i.postimg.cc/2SRrhgkN/IMG-4811.gif)
+![Gif mostrando o funcionamento da lista de tarefas](https://i.postimg.cc/4Nc3dym6/IMG-4815.gif)
 
 # Instruções para rodar
 - Primeira etapa: download do projeto
