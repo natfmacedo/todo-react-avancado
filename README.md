@@ -67,8 +67,13 @@ src/
         ```
 
 - Terceira etapa: execução do projeto
-    - No seu terminal, digite os seguintes comandos para instalar as dependências necessárias e rodar o projeto, respectivamente:
+    - No seu terminal, digite os seguintes comandos para instalar as dependências necessárias e rodar a versão de desenvolvimento projeto, respectivamente:
         ```bash
         npm install
         npm run dev
         ```
+        - Para rodar a versão de produção localmente e visualizar a prévia da aplicação, digite: 
+            ```bash
+            npm run build
+            npm run preview
+            ```
